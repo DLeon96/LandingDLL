@@ -4,12 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { Palette, Sparkles, Feather, Globe } from 'lucide-react';
-import ImageHero from '@/components/imageHero';
 import { Button } from '@/components/ui/button';
+import InteractiveImage from '@/components/imageHero';
+
 
 export default function Home() {
 
-  const handleLogoClick = (e:any) => {
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     window.scrollTo({
       top: 0,
@@ -18,9 +20,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const handleScroll = (e:any) => {
+    const handleScroll = (e: Event) => {
       e.preventDefault();
-      const target = e.currentTarget;
+      const target = e.currentTarget as HTMLElement;
       const id = target.getAttribute('href')?.slice(1);
       if (id) {
         const element = document.getElementById(id);
@@ -31,7 +33,6 @@ export default function Home() {
         }
       }
     };
-
     const links = document.querySelectorAll('nav a[href^="#"]');
     links.forEach((link) => {
       link.addEventListener('click', handleScroll);
@@ -86,7 +87,7 @@ export default function Home() {
               </div>
             </div>
             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 aspect-video relative">
-              <ImageHero />
+              <InteractiveImage/>
             </div>
 
           </div>
